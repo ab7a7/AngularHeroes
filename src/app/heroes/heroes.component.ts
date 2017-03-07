@@ -26,4 +26,21 @@ export class HeroesComponent implements OnInit {
   displayDetails(): void {
     this.router.navigate(['/details', this.selectedHero.id]);
   }
+
+  add(name: string): void {
+    name = name.trim();
+    if (!name) { return; }
+
+    this.HeroService.addHero(name).then(h => {
+      this.heroes.push(h);
+      this.selectedHero = null;
+    });
+  }
+  deleteHero(hero: Hero) {
+    this.HeroService.deleteHero(hero.id).then(() =>{
+      this.heroes = this.heroes.filter(h => h.id !== hero.id)
+      if (this.selectedHero === hero) { this.selectedHero = null; }
+    });
+    
+  }
 }
