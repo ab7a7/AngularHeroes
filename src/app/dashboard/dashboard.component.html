@@ -1,0 +1,6 @@
+<h3>{{title}}</h3>
+<div class="grid grid-pad">
+    <ul>
+        <a *ngFor="let hero of heroes" [routerLink]="['/details', hero.id]" class="col-1-4">{{hero.name}}</a>
+    </ul>
+</div>
